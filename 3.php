@@ -38,7 +38,6 @@ $second=array();
 foreach($TwoName as $name){
     $parts = explode(' ', $name);
     $first[] = $parts[0];
-   //$first=shuffle($first);
     $second[] = $parts[1];
 }
 
