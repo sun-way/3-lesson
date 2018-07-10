@@ -1,53 +1,34 @@
 <?php
-
-$continents =array(
-
-    'Africa' =>array( 'Arsinoitherium', 'Palaeoloxodon recki hkhgg vkhhkj' ),
-
-    'North America' =>array ('Mammuthus primigenius'),
-
+$continents = array(
+    'Africa' => array( 'Arsinoitherium', 'Palaeoloxodon recki hkhgg vkhhkj' ),
+    'North America' => array('Mammuthus primigenius'),
     'Australia' => array('Palorchestes azael', 'Diprotodontidae' , 'Genyornis newtoni'),
-
-    'Europa'=>array ('Amphicyon major' , 'Ursus minimus' , 'Megaloceros giganteus',  'Coelodonta antiquitatis')
+    'Europa'=> array('Amphicyon major' , 'Ursus minimus' , 'Megaloceros giganteus',  'Coelodonta antiquitatis')
 );
 echo "<pre>";
- echo 'Исходныи  массив: ';
+echo 'Исходныи  массив: ';
 echo "<pre>";
 print_r($continents);
-
-$TwoName = array(); //массив из двух слов
-$k=0;  //с4ёт4ик
-foreach($continents as $continent =>$con )
-    foreach ($con as $animal)
-    {
-        if (strpos($animal, ' ')!=false)
-        { $k=  substr_count($animal, ' ');
-        if  ($k==1)
-            $TwoName[]= $animal;
-        }
+$TwoName = [];
+$first= [];
+$second= [];
+foreach($continents as $continent =>$con) {
+    foreach ($con as $animal) {
+            if (substr_count($animal, ' ')==1) {
+                $TwoName[] = $animal;
+                $parts = explode(' ', $animal);
+                $first[] = $parts[0];
+                $second[] = $parts[1];
+                shuffle($first);
+                shuffle($second);
+            }
     }
-echo '<pre>';
-echo 'массив  с двумя словами: ';
-echo '<pre>';
+}
+echo ' массив  с двумя словами: <br>';
 print_r($TwoName);
-
 echo '<pre>';
-
-$first= array();
-$second=array();
-foreach($TwoName as $name){
-    $parts = explode(' ', $name);
-    $first[] = $parts[0];
-    $second[] = $parts[1];
+echo ' Финальныи перемешанныи массив:<br>';
+for ($i = 0; $i < count($first); $i++) {
+    echo $first [$i] . ' ' . $second [$i] .'<br>';
 }
-
-echo '**************** финальныи перемешанныи массив***********<br>';
-shuffle($second);
-shuffle($first);
-$final_result = [];
- for ($i = 0; $i < count($first); $i++)
-{ $final_result[$i]=$first [$i] . ' ' . $second [$i];
-        echo $first [$i] . ' ' . $second [$i] .'<br>';
-}
-
 ?>
